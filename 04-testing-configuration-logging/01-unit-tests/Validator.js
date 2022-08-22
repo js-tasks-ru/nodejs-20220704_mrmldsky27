@@ -10,6 +10,11 @@ module.exports = class Validator {
       const rules = this.rules[field];
 
       const value = obj[field];
+
+      if (value === undefined) {
+        errors.push({field, error: `the value was not provided`});
+        return errors;
+      }
       const type = typeof value;
 
       if (type !== rules.type) {
